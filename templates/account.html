@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container profile-container">
+        <h2 class="text-center mb-4">User Profile</h2>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Personal Information</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Full Name:</strong> {{ user.first_name }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>User Name:</strong> {{ user.username }}</p>
+            </div>
+            <div class="card-footer text-right">
+                <a href="/edit-profile" class="btn btn-primary">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquer">
