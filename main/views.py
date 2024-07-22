@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from vegitables.models import Vegitable, Fruit
+from django.contrib.auth.decorators import login_required
+
 
 vegitables = Vegitable.objects.all()
 fruits = Fruit.objects.all()
@@ -25,6 +27,7 @@ def base_view(request):
         return render(request, 'base.html', context={'message':'no'})
     return render(request, 'base.html')
 
+@login_required
 def cart_view(request):
     product_name = request.GET.get('data')
     product_names = []
@@ -37,7 +40,7 @@ def cart_view(request):
         return render(request, 'cart.html', context={'products':fruits})
 
 def chackout_view(request):
-    return render(request, 'chackout.html')
+    return render(request, 'chackout.html', context={'vegitables':vegitables, 'fruits':fruits})
 
 def contact_view(request):
     return render(request, 'contact.html')
