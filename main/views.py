@@ -57,9 +57,7 @@ def shop_detail_view(request, name):
         return render(request, 'shop_detail.html', context={'product':vegitable, 'vegitables':vegitables, 'fruits':fruits})
     fruit = Fruit.objects.get(name=name)
     return render(request, 'shop_detail.html', context={'product':fruit, 'vegitables':vegitables, 'fruits':fruits})
-    
-    if request.method == 'POST':
-        product_type = request.POST['']
+
 
 def shop_view(request):
     return render(request, 'shop.html', context={'vegitables':vegitables, 'fruits':fruits})
