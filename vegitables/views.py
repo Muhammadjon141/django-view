@@ -5,13 +5,17 @@ from .forms import VegitableForm, FruitForm
 def create_product_view(request):
     # return render(request, 'create_product.html')
     if request.method == 'POST':
-        form = VegitableForm(request.POST)
-        if form.is_valid():
-            form.save()
+        data = request.GET.get('data')
+        print("cccccccccccccccccccccccccccccccccc", data)
+        if data == 'vegitables':
+            form = VegitableForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('shop')
+        form1 = FruitForm(request.POST)
+        if form1.is_valid():
+            form1.save()
             return redirect('shop')
-        # form1 = FruitForm(request.POST)
-        # form1.is_valid()
-        # form1.save()
-        # return redirect('shop')
+    data = request.GET.get('data')
     form = FruitForm(request.POST)
-    return render(request, 'create_product.html', {'form': form})
+    return render(request, 'create_product.html', context={'form': form, 'message':data})

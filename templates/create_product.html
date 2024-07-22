@@ -2,7 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% if message == 'vegitables' %}
     <title>Add Vegetable</title>
+    {%endif%}
+    {% if message == 'fruits' %}
+    <title>Add Fruit</title>
+    {%endif%}
     <!-- Bootstrap CSS (agar kerak bo'lsa) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>

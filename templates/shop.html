@@ -225,7 +225,10 @@
                             {% endfor %}
                         </div>
                         {% if request.user.is_staff%}
-                        <a href="{% url 'create_product' %}" class="btn btn-primary">Create</a>
+                        <a href="{% url 'create_product'%}?data={{ product.typee }}" class="btn btn-primary">Create Fruit</a>
+                        {%endif%}
+                        {% if request.user.is_staff%}
+                        <a href="{% url 'create_product'%}?data={{ product.typee }}" class="btn btn-primary">Create Vegitable</a>
                         {%endif%}
                     </div>
                 </div>
