@@ -2,6 +2,8 @@ from django.shortcuts import render
 from vegitables.models import Vegitable, Fruit
 from django.contrib.auth.decorators import login_required
 from django.views import View
+from django.core.paginator import Paginator
+
 
 vegitables = Vegitable.objects.all()
 fruits = Fruit.objects.all()
@@ -95,7 +97,10 @@ def shop_detail_view(request, name):
 
 class ShopView(View):
     def get(self, request):
-        return render(request, 'shop.html', context={'vegitables':vegitables, 'fruits':fruits})
+        pagination = Paginator(vegitables, 3)
+        page = request.GET.get('page', 1)
+        pages = pagination.get_page(page)
+        return render(request, 'shop.html', context={'pages':pages})
 
 class TestimonialView(View):
     def get(self, request):

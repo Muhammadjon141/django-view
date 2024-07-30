@@ -75,6 +75,7 @@
                                 </div>
                             </div>
                             <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                            <a href="{% url 'blog' %}" class="nav-item nav-link">Blogs</a>
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
@@ -98,7 +99,7 @@
                                     <a href="#" class="my-auto" data-toggle="dropdown"></a>
                                     <div class="dropdown-menu rounded-0 m-0">
                                         {{ request.user.first_name }}
-                                        <a href="{% url 'account' request.user.pk %}" class="dropdown-item">Account</a>
+                                        <a href="{% url 'account' request.user.id %}" class="dropdown-item">Account</a>
                                         <a href="{% url 'log_out' %}" class="dropdown-item">Log out</a>
                                     {% comment %} </div> {% endcomment %}
                                 </div>

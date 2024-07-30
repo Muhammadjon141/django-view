@@ -23,6 +23,10 @@ class Vegitable(models.Model):
     start_sel = models.DateField(auto_now_add=True)
     mavsum = models.ForeignKey(Mavsum, on_delete=models.CASCADE, null=False)
 
+    class Meta:
+        ordering = ['id']
+        
+        
     def __str__(self):
         return self.name
     

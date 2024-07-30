@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'shop',
     'vegitables',
     'import_export',
+    'blog',
 ]
 
 MIDDLEWARE = [

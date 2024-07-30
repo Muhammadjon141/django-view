@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .forms import UserForm
 from django.contrib.auth import login, logout, forms
 from django.views import View
+from django.views.generic import DetailView
 # from .forms import RegisterForm
 
 # Create your views here.
@@ -100,10 +101,15 @@ class Log_OutView(View):
         logout(request)
         return redirect('index')
 
-def account_view(request, pk):
-    user = User.objects.get(pk=pk)
-    return render(request, 'account.html', context={'user':user})
+# def account_view(request, pk):
+#     user = User.objects.get(pk=pk)
+#     return render(request, 'account.html', context={'user':user})
     
+class AccountView(DetailView):
+    model = User
+    pk_url_kwarg = 'id'
+    template_name = 'account.html'
+    context_object_name = 'user'
     
 # class AccountView(View):
 #     def get(self, request):

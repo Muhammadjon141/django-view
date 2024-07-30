@@ -205,19 +205,20 @@
                                 </div>
                             </div>
                             {% endfor %} {% endcomment %}
-                            {% for page in pages.object_list %}
+                        {% if pages %}
+                            {% for page in pages %}
                             <div class="col-md-6 col-lg-6 col-xl-4">
                                 <div class="rounded position-relative fruite-item">
                                     <div class="fruite-img">
-                                        <img src="{{ page.image.url }}" class="img-fluid w-100 rounded-top" alt="Not Found">
+                                        {% comment %} <img src="{{ page.image.url }}" class="img-fluid w-100 rounded-top" alt="Not Found"> {% endcomment %}
                                     </div>
-                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Vegitable</div>
+                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Blog</div>
                                     <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                        <a href="{% url 'shop_detail' page.name %}"><h4>{{page.name}}</h4></a>
+                                        <a href=""><h4>{{page.author.get_full_name}}</h4></a>
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                         <div class="d-flex justify-content-between flex-lg-wrap">
-                                            <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                            <a href="{% url 'shop_detail' page.name %}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                            {% comment %} <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p> {% endcomment %}
+                                            {% comment %} <a href="{% url 'shop_detail' page.name %}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> {% endcomment %}
                                         </div>
                                     </div>
                                 </div>
@@ -225,16 +226,19 @@
                             {% endfor %}
                             <div class="col-12">
                                 <div class="pagination d-flex justify-content-center mt-5">
-                                    {% if pages.has_previous %}
-                                        <a href="{% url 'shop' %}?page={{pages.previous_page_number}}" class="rounded">&laquo;</a>
+                                    {% if page > 1 %}
+                                        <a href="{% url 'blog' %}?page={{ previous_page }}" class="rounded">&laquo;</a>
                                     {% endif %}
-                                    <a href="" class="active rounded"> {{pages.number}} </a>
-                                    {% if pages.has_next %}
-                                        <a href="{% url 'shop' %}?page={{pages.next_page_number}}" class="rounded">&raquo;</a>
+                                    <a href="" class="active rounded"> {{ page }} </a>
+                                    {% if next_page %}
+                                        <a href="{% url 'blog' %}?page={{next_page}}" class="rounded">&raquo;</a>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
+                        {% else %}
+                        <h2>Not Found</h2>
+                        {%endif%}
                         {% if request.user.is_staff%}
                         <a href="{% url 'create_product'%}?data={{ product.typee }}" class="btn btn-primary">Create Fruit</a>
                         {%endif%}
